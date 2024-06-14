@@ -2,7 +2,7 @@ public class Assignment3 {
     public static void main(String[] args) {
         int[] array = {1, 4, 3, -6, 5, 4};
         int[] result = getSecondLargestIndex(array);
-        System.out.println("Output: [" + result[0] + ", " + result[1] + "]");
+        System.out.println("Output: [" + result[0] + "]");
     }
 
     public static int[] getSecondLargestIndex(int[] array) {
