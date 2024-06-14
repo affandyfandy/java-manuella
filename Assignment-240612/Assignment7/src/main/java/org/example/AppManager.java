@@ -116,10 +116,11 @@ public class AppManager {
         return employees.stream()
                 .filter(e -> (name == null || name.isEmpty() || e.getName().contains(name)))
                 .filter(e -> (id == null || id.isEmpty() || e.getId().equals(id)))
-                .filter(e -> (year == null || e.getDob().getYear() == year))
+                .filter(e -> (year == null || (e.getDob() != null && e.getDob().getYear() == year)))
                 .filter(e -> (department == null || department.isEmpty() || e.getDepartment().equals(department)))
                 .collect(Collectors.toList());
     }
+
 
     public void exportToCsv(String path, List<Employee> employeeList) throws IOException {
         List<String> lines = new ArrayList<>();
