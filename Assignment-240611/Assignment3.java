@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class SecondLargestIndices {
+public class Assignment3 {
 
     public static List<Integer> secondLargestIndices(int[] nums) {
         if (nums == null || nums.length < 2) {
