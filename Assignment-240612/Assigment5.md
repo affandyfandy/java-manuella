@@ -1,6 +1,8 @@
 ## Assignment 5
 Implementation of thread-safe singleton
 
+A thread-safe singleton in Java ensures that only one instance of a class is created across multiple threads, typically achieved using lazy initialization with double-checked locking or by initializing the instance statically. Synchronization mechanisms like synchronized methods or volatile variables are employed to manage concurrent access during instance creation, preventing race conditions where multiple threads might attempt to create the singleton simultaneously. This guarantees consistent and reliable access to the singleton instance throughout the application.
+
 Method 1
 ```java
 public class Singleton {
