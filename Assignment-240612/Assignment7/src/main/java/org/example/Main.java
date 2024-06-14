@@ -74,8 +74,27 @@ public class Main {
                     String path = scanner.nextLine();
                     try{
                         System.out.println(rootPath + "\\" + path);
-                        manager.importData(rootPath + "\\" + path);
-                        System.out.println("Data imported.");
+                        if (path.endsWith(".csv")){
+                            System.out.print("Choose open method: \n");
+                            System.out.print("1. OpenCSV\n");
+                            System.out.print("2. CSV reader implementation\n");
+                            System.out.print("Choose: ");
+                            int method = scanner.nextInt();
+                            scanner.nextLine();
+                            if (method == 1){
+                                manager.importData(rootPath + "\\" + path);
+                            }
+                            else if (method == 2){
+                                manager.importDataOwnImplementation(rootPath + "\\" + path);
+                            }
+                            else{
+                                System.out.println("Method invalid.");
+                                break;
+                            }
+                        }
+                        else{
+                            manager.importData(rootPath + "\\" + path);
+                        }
                     } catch (IOException e){
                         System.out.println("Failed to import: " + e.getMessage());
                     }

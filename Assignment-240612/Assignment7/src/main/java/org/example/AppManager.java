@@ -50,23 +50,26 @@ public class AppManager {
         }
     }
 
+    public void importDataOwnImplementation(String path) throws IOException{
+        List<String> lines = FileUtils.readFile(path);
+
+        for (String line: lines){
+            String[] datas = line.split(",");
+            String id = datas[0];
+            String name = datas[1];
+            LocalDate dob = DateUtils.parseData(datas[2]);
+            String address = datas[3];
+            String department = datas[4];
+            employees.add(new Employee(id, name, dob, address, department));
+        }
+        System.out.println(employees.size() + " lines of data.");
+    }
+
     public void importData(String path) throws IOException {
         if (path.endsWith(".xlsx")) {
             importDataXlsx(path);
             return;
         }
-
-        // Implementation CSV reader
-//        List<String> lines = FileUtils.readFile(path);
-//
-//        for (String line: lines){
-//            String[] datas = line.split(",");
-//            String id = datas[0];
-//            String name = datas[1];
-//            LocalDate dob = DateUtils.parseData(datas[2]);
-//            String address = datas[3];
-//            String department = datas[4];
-//            employees.add(new Employee(id, name, dob, address, department));
 
         // Using OpenCSV
         try (CSVReader reader = new CSVReader(new FileReader(path))) {
