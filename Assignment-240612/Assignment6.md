@@ -1,5 +1,17 @@
 ## Assignment 6
 
+Stack
+- The stack is used for static memory allocation.
+- It stores primitive values (e.g., int, char) and references to objects in heap memory.
+- Memory allocation and deallocation on the stack follow a - Last In First Out (LIFO) structure.
+- Stack memory is typically faster to access and manage.
+
+Heap
+- The heap is used for dynamic memory allocation.
+- It stores objects created using the new keyword.
+- Objects in heap memory persist until they are explicitly removed by the garbage collector.
+- Heap memory is larger than stack memory but can be slower to access.
+
 Update MyClass
 ```java
 public class MyClass {
