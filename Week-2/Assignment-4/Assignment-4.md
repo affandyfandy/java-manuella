@@ -26,3 +26,24 @@ No preemption means that resources cannot be forcibly taken away from a process 
 4. Circular Wait
 Circular wait occurs when two or more processes form a circular chain where each process holds at least one resource that is requested by the next process in the chain. For example, Process A holds Resource 1 and requests Resource 2 held by Process B, while Process B holds Resource 2 and requests Resource 1 held by Process A. This circular dependency can lead to deadlock if no external intervention occurs to break the cycle.To violate circular wait, we can assign a priority number to each of the resource. A process can't request for a lesser priority resource.
 
+#### 4. Noticeable things when using multiple thread
+1. Concurrency: Threads allow different parts of the program to execute concurrently, multiple tasks can run simultaneously.
+
+2. Thread Safety: Ensuring thread safety is crucial when multiple threads access shared resources, potentially lead to data corruption or inconsistent results.
+
+3. Synchronization Overhead: Implementing synchronization mechanisms to coordinate access to shared resources adds overhead if not managed properly.
+
+4. Deadlocks: A deadlock happens when two or more threads are blocked, waiting on a resource held by the other.
+
+5. Context Switching: Threads are managed by the operating system, which performs context switching—switching execution between threads. Context switching has overhead, and can impact performance.
+
+6. Debugging Challenges: Debugging multithreaded applications can be challenging due to non-deterministic behavior caused by thread.
+
+#### 5. ReadWriteLock
+The ReadWriteLock interface in Java provides a mechanism for allowing multiple threads to concurrently read from a shared resource, while ensuring exclusive access for writing. This can be useful in scenarios where reads are frequent but writes are less frequent and potentially more disruptive to other operations. So it is either multiple reader or one writer at one time.
+
+Multiple reader thread at one time
+![alt text](image.png)
+
+One writer thread at one time
+![alt text](image-1.png)
