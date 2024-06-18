@@ -34,7 +34,7 @@ public class CurrentAccount implements Account {
     }
 
     public Boolean login(Integer accountId, String password){
-        if (this.accountId == accountId && this.password == password){
+        if (this.accountId.equals(accountId) && this.password.equals(password)){
             System.out.println("Login success.");
             return true;
         }
