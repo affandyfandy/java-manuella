@@ -12,6 +12,7 @@ public class Lab1 {
 
             String line;
             while ((line = reader.readLine()) != null) {
+                System.out.println(line);
                 writer.write(line);
                 writer.newLine();
             }
