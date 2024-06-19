@@ -9,8 +9,8 @@ public class Assignment5_7 {
         map.put(2, "Banana");
         map.put(3, "Apple");
 
-        Thread writerThread = new Thread(new Writer(map));
         Thread readerThread1 = new Thread(new Reader(map));
+        Thread writerThread = new Thread(new Writer(map));
         Thread readerThread2 = new Thread(new Reader(map));
 
         writerThread.start();
