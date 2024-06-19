@@ -1,19 +1,25 @@
+import java.io.PrintWriter;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.HashMap;
 import java.util.Map;
+import java.util.List;
+import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.stream.Collectors;
+import java.util.stream.*;
 import java.util.Scanner;
+import java.util.Set;
+import java.util.HashSet;
 
-public class RemoveDuplicate {
-    public static void removeDuplicates(String inputFile, String outputFile, String keyFieldName) {
+public class Assignment6_3{
+    public static void removeDuplicates(String inputFile, String outputFile, String keyFieldName){
         BufferedReader reader = null;
         PrintWriter writer = null;
 
-        try {
+        try{
             reader = new BufferedReader(new FileReader("res/" + inputFile));
             writer = new PrintWriter(new FileWriter("res/" + outputFile));
 
@@ -23,37 +29,31 @@ public class RemoveDuplicate {
             String header = reader.readLine();
             writer.println(header);
 
-            int keyIndex = -1;
             String[] headers = header.split(",");
-
-            for (int i = 0; i < headers.length; i++) {
-                if (headers[i].equals(keyFieldName)) {
-                    keyIndex = i;
-                    break;
-                }
-            }
+            final int keyIndex = getKeyIndex(headers, keyFieldName);
 
             if (keyIndex == -1) {
                 throw new IllegalArgumentException("Key field name not found in the header.");
             }
+            
+            List<String> lines = reader.lines().toList();
 
-            while ((line = reader.readLine()) != null) {
-                String[] fields = line.split(",");
-                if (keyIndex < fields.length) {
-                    String keyFieldValue = fields[keyIndex].trim();
+            Set<String> uniqueKeys = new HashSet<>();
+            List<String> noDuplicate = lines.stream()
+                                            .filter(l -> {
+                                                String[] fields = l.split(",");
+                                                return uniqueKeys.add(fields[keyIndex]);
+                                            })
+                                            .collect(Collectors.toList());
 
-                    if (!seenKeys.containsKey(keyFieldValue)) {
-                        seenKeys.put(keyFieldValue, line);
-                        writer.println(line);
-                    }
-                }
+            for (String uniqueLine : noDuplicate) {
+                writer.println(uniqueLine);
             }
-        }
-        catch (FileNotFoundException e) {
+
+        } catch (FileNotFoundException e) {
             System.err.println("Error: Input file '" + inputFile + "' not found.");
             e.printStackTrace();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         } finally {
             try {
@@ -67,6 +67,15 @@ public class RemoveDuplicate {
                 e.printStackTrace();
             }
         }
+    }
+
+    private static int getKeyIndex(String[] headers, String keyFieldName) {
+        for (int i = 0; i < headers.length; i++) {
+            if (headers[i].equals(keyFieldName)) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     public static void main(String[] args) {
