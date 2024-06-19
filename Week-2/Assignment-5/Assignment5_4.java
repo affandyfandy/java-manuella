@@ -1,6 +1,6 @@
 import java.util.HashMap;
 
-public class AccountTest {
+public class Assignment5_4 {
     public static void main(String[] args) {
         HashMap<String, Integer> originalMap = new HashMap<>();
         originalMap.put("A", 1);

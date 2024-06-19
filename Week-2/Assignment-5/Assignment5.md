@@ -54,3 +54,12 @@ Usage:
 
 Usage:
 - When we need predictable iteration order with fast access times.
+
+#### 4. Shallow copy of a HashMap instance
+Shallow copy creates a duplicate of the data structure (object), but it does not duplicate the actual objects themselves. Instead, it copies references to the same objects. If the objects contain references to other objects, the shallow copy will still refer to the same referenced objects. It's useful for quickly duplicating object structures without deep copying all nested objects, but careful consideration is needed to manage shared state effectively.
+
+#### 6. CopyOnWriteArrayList
+CopyOnWriteArrayList is implementation of List in Java that provides thread-safe iteration and does not throw ConcurrentModificationException even when the list is modified during iteration. This is achieved by making a fresh copy of the underlying array whenever the list is modified (add, set, remove operations).
+
+#### 7. ConcurrencyHashMap
+ConcurrentHashMap in Java is a thread-safe implementation of the Map interface. It uses using a combination of partitioned locks and fine-grained locking mechanisms to achieve thread safety and efficient concurrency.
