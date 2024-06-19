@@ -15,7 +15,7 @@ import java.util.Set;
 import java.util.HashSet;
 
 public class Assignment6_3{
-    public static void removeDuplicates(String inputFile, String outputFile, String keyFieldName){
+    public void removeDuplicates(String inputFile, String outputFile, String keyFieldName){
         BufferedReader reader = null;
         PrintWriter writer = null;
 
@@ -69,7 +69,7 @@ public class Assignment6_3{
         }
     }
 
-    private static int getKeyIndex(String[] headers, String keyFieldName) {
+    private int getKeyIndex(String[] headers, String keyFieldName) {
         for (int i = 0; i < headers.length; i++) {
             if (headers[i].equals(keyFieldName)) {
                 return i;
@@ -79,6 +79,7 @@ public class Assignment6_3{
     }
 
     public static void main(String[] args) {
+        Assignment6_3 processing = new Assignment6_3();
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("Input file name: ");
@@ -92,7 +93,7 @@ public class Assignment6_3{
 
         scanner.close();
 
-        removeDuplicates(inputFile, outputFile, keyFieldName);
+        processing.removeDuplicates(inputFile, outputFile, keyFieldName);
 
         System.out.println("Duplicates removed successfully. Output written to " + outputFile);
     }
