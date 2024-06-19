@@ -20,7 +20,7 @@ public class StudentProcessing {
 
     public boolean nameContain(String x, List<Student> students){
         return students.stream()
-                .anyMatch(student -> student.getName().contains(x));
+                .anyMatch(student -> student.getName().toLowerCase().contains(x.toLowerCase()));
     }
 
     public static void main(String[] args) {
@@ -41,7 +41,7 @@ public class StudentProcessing {
         System.out.println("Student with max age: " + maxAgeStudent.getName() + ", age: " + maxAgeStudent.getAge());
 
         // NAME CONTAIN X
-        String keyword = "X";
+        String keyword = "D";
         boolean anyMatch = studentProcessing.nameContain(keyword, students);
 
         if (anyMatch) {
