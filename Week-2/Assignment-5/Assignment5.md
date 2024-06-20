@@ -225,10 +225,31 @@ public static void demo1() {
 
 #### 11. ConcurrencyMomdificationException
 If multiple threads access and modify a collection like ArrayList concurrently, without synchronization, the following issues may arise:
-- Inconsistent State: One thread may read or write to the collection while another thread is modifying it, leading to an inconsistent or corrupted state.
+- Inconsistent State: One thread may read or write to the collection while another thread is modifying it, leading to an inconsistent or corrupted state. The outcome of operations depends on the timing of threads' execution.
 - ConcurrentModificationException: This exception is specifically thrown by the iterator when it detects that the collection has been modified after the iterator was created, and this modification is not performed through the iterator itself.
 
 Several way to handle this:
 - Synchronization: Use synchronized blocks or methods to ensure that only one thread can modify the collection at a time.
+```java
+synchronized (collection) {
+    // Perform operations on the collection
+}
+```
+
 - Concurrent Collections: Use thread-safe collections from the java.util.concurrent package, like CopyOnWriteArrayList, ConcurrentHashMap, etc.
+```java
+List<String> list = new CopyOnWriteArrayList<>();
+```
+
+- Iterator Alternatives: Use iterators that are designed to handle concurrent modifications, like those provided by ConcurrentHashMap's keySet().iterator(). These iterators do not throw ConcurrentModificationException and can operate safely even when the collection is modified concurrently.
+
 - Explicit Locks: Use ReentrantLock or other explicit locking mechanisms to control access to the collection.
+```java
+ReentrantLock lock = new ReentrantLock();
+lock.lock();
+try {
+    // Perform operations on the collection
+} finally {
+    lock.unlock();
+}
+```
