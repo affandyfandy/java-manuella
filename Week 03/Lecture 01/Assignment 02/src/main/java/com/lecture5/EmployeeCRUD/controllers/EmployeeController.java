@@ -94,12 +94,10 @@ public class EmployeeController {
                         String department = fields[4].trim();
 
                         if (id.isEmpty() || dob == null) {
-                            System.out.println("Empty");
                             return null;
                         }
                         else{
                             Employee e = new Employee(id, name, dob, address, department);
-                            System.out.println(e);
                             return e;
                         }
                     })
