@@ -77,7 +77,7 @@ public class EmployeeController {
         return ResponseEntity.notFound().build();
     }
 
-    @PostMapping("/upload-csv")
+    @PostMapping(value = "/upload-csv")
     public ResponseEntity<String> uploadCSVFile(@RequestParam("file") MultipartFile file) {
         if (file.isEmpty()) {
             return ResponseEntity.badRequest().body("File is empty");
@@ -110,8 +110,8 @@ public class EmployeeController {
         }
     }
 
-    @GetMapping("/department")
-    public ResponseEntity<List<Employee>> getEmployeesByDepartment(@RequestParam("department") String department) {
+    @GetMapping(value = "/department/{department}")
+    public ResponseEntity<List<Employee>> getEmployeesByDepartment(@PathVariable(value = "department") String department) {
         List<Employee> employees = employeeRepository.findByDepartment(department);
         if (employees.isEmpty()) {
             return ResponseEntity.noContent().build();
