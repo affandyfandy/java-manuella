@@ -42,7 +42,8 @@ public class Main {
 ```java
 MyClass obj = new MyClass();
 ```
-- In stack, method main is added, obj reference is created and points to a new MyClass object on the heap, but the value and name is still null.
+- In stack, method main is added and obj is created and stored on the stack.
+- obj points to a new MyClass object on the heap, but the value and name is still null.
 
 ```java
 obj.value = 5;
@@ -91,7 +92,8 @@ public class Main {
 ```java
 MyClass obj = new MyClass();
 ```
-- In stack, method main is added, obj reference is created and points to a new MyClass object on the heap, but the value and name is still null.
+- In stack, method main is added and obj is created and stored on the stack.
+- obj points to a new MyClass object on the heap, but the value and name is still null.
 
 ```java
 obj.value = 5;
