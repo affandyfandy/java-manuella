@@ -17,7 +17,7 @@ CREATE TABLE Invoice (
     customer_id INT,
     cashier_id INT,
     amount DECIMAL(10, 2),
-    created_date DATETIME,
+    created_date TIMESTAMP,
     FOREIGN KEY (customer_id) REFERENCES Customer(id),
     FOREIGN KEY (cashier_id) REFERENCES Cashier(id)
 );
