@@ -1,4 +1,4 @@
-## Assignment 01
+## Assignment 01: Normalization in database
 Normalization is a database design technique that organizes tables to reduce redundancy and improve data integrity. The goal is to divide larger tables into smaller, related tables without losing information. Normalization typically involves several normal forms, each with specific requirements. The most commonly used normal forms are the First Normal Form (1NF), Second Normal Form (2NF), and Third Normal Form (3NF).
 
 #### 1NF
