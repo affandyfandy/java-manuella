@@ -110,8 +110,8 @@ public class EmployeeController {
         }
     }
 
-    @GetMapping(value = "/department/{department}")
-    public ResponseEntity<List<Employee>> getEmployeesByDepartment(@PathVariable(value = "department") String department) {
+    @GetMapping(value = "/department")
+    public ResponseEntity<List<Employee>> getEmployeesByDepartment(@RequestParam(value = "department") String department) {
         List<Employee> employees = employeeRepository.findByDepartment(department);
         if (employees.isEmpty()) {
             return ResponseEntity.noContent().build();
