@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 public class EmailServiceImpl implements EmailService {
     @Override
     public void sendEmail(String to, String content) {
-        // Simulate email sending (in real scenarios, integrate with email server)
         System.out.println("Email to " + to);
         System.out.println("Content: " + content);
 
