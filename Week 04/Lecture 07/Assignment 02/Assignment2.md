@@ -222,9 +222,7 @@ Sure! Let's go through each of these Spring annotations with examples and explan
 Explanation: This annotation indicates that a class declares one or more @Bean methods and can be processed by the Spring container to generate bean definitions and service requests at runtime.
 
 Example:
-
-java
-Copy code
+```java
 @Configuration
 public class AppConfig {
     @Bean
@@ -232,13 +230,12 @@ public class AppConfig {
         return new MyServiceImpl();
     }
 }
+```
 2. @Bean: Declares a bean to be managed by Spring.
 Explanation: This annotation is used to declare a bean, which will be managed by the Spring container. It is typically used within a @Configuration class.
 
 Example:
-
-java
-Copy code
+```java
 @Configuration
 public class AppConfig {
     @Bean
@@ -246,39 +243,38 @@ public class AppConfig {
         return new MyServiceImpl();
     }
 }
+```
 3. @ComponentScan: Configures package scanning.
 Explanation: This annotation tells Spring to scan the specified package(s) for components (e.g., @Component, @Service, @Repository, @Controller).
 
 Example:
-
-java
-Copy code
+```java
 @Configuration
 @ComponentScan(basePackages = "com.example")
 public class AppConfig {
 }
+```
 4. @Component: Marks a class as a Spring component.
 Explanation: This annotation is used to indicate that a class is a Spring component. Such classes are considered as candidates for auto-detection when using annotation-based configuration and classpath scanning.
 
 Example:
 
-java
-Copy code
+```java
 @Component
 public class MyComponent {
     // Component logic
 }
+```
 5. @Service: Marks a service-layer class.
 Explanation: This annotation is a specialization of @Component. It indicates that an annotated class is a service, which is a concept from domain-driven design (DDD).
 
 Example:
-
-java
-Copy code
+```java
 @Service
 public class MyService {
     // Service logic
 }
+```
 
 6. @Autowired: Injects dependencies.
 Explanation: This annotation is used for automatic dependency injection. It can be applied to constructors, methods, and fields.
