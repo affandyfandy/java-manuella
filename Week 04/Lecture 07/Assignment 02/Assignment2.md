@@ -169,3 +169,221 @@ public class B implements ApplicationContextAware {
 ```
 
 #### Annotations
+1. @Configuration
+Indicates that the class declares one or more @Bean methods and can be processed by the Spring container to generate bean definitions and service requests.
+```java
+@Configuration
+public class AppConfig {
+    @Bean
+    public MyService myService() {
+        return new MyServiceImpl();
+    }
+}
+```
+
+2. @Bean
+Indicates that a method produces a bean to be managed by the Spring container.
+```java
+@Bean
+public MyService myService() {
+    return new MyServiceImpl();
+}
+```
+
+3. @ComponentScan
+Configures component scanning directives for use with @Configuration classes.
+```java
+@Configuration
+@ComponentScan(basePackages = "com.example")
+public class AppConfig {
+}
+```
+
+4. @Component
+Indicates that an annotated class is a component. Such classes are considered as candidates for auto-detection when using annotation-based configuration and classpath scanning.
+```java
+@Component
+public class MyComponent {
+}
+```
+
+5. @Service
+Specialization of @Component for service layer classes.
+```java
+@Service
+public class MyService {
+}
+```
+
+6. @Repository
+Specialization of @Component for DAO (Data Access Object) classes.
+```java
+@Repository
+public class MyRepository {
+}
+```
+
+7. @Autowired
+Marks a constructor, field, setter method, or config method as to be autowired by Spring's dependency injection facilities.
+```java
+@Autowired
+private MyService myService;
+```
+
+8. @Scope
+Configures the scope of a bean (e.g., singleton, prototype).
+```java
+@Bean
+@Scope("prototype")
+public MyService myService() {
+    return new MyServiceImpl();
+}
+```
+
+9. @Qualifier
+Specifies which bean to inject when multiple candidates are present.
+```java
+@Autowired
+@Qualifier("specificService")
+private MyService myService;
+```
+
+10. @PropertySource, @Value
+@PropertySource is used to specify the property file to be loaded, and @Value is used to inject property values into beans.
+```java
+@Configuration
+@PropertySource("classpath:application.properties")
+public class AppConfig {
+    @Value("${my.property}")
+    private String myProperty;
+}
+```
+
+11. @PreDestroy, @PostConstruct
+@PostConstruct is used on a method that needs to be executed after dependency injection is done, and @PreDestroy is used on methods to be executed before the bean is destroyed.
+```java
+@Component
+public class MyComponent {
+    @PostConstruct
+    public void init() {
+        // Initialization code
+    }
+
+    @PreDestroy
+    public void destroy() {
+        // Cleanup code
+    }
+}
+```
+
+Example in project:
+```java
+// AppConfig.java
+package com.example;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.Scope;
+
+@Configuration
+@ComponentScan(basePackages = "com.example")
+@PropertySource("classpath:application.properties")
+public class AppConfig {
+
+    @Bean
+    @Scope("prototype")
+    public MyService myService() {
+        return new MyService();
+    }
+}
+
+// MyService.java
+package com.example;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class MyService {
+
+    @Autowired
+    private MyRepository myRepository;
+
+    public void performService() {
+        System.out.println("Service is being performed.");
+        myRepository.saveData("Example Data");
+        String data = myRepository.fetchData(1);
+        System.out.println("Fetched Data: " + data);
+    }
+}
+
+// MyRepository.java
+package com.example;
+
+import org.springframework.stereotype.Repository;
+
+@Repository
+public class MyRepository {
+
+    // This is a simulated database using an in-memory store
+    private Map<Integer, String> database = new HashMap<>();
+
+    public void saveData(String data) {
+        int id = database.size() + 1;
+        database.put(id, data);
+        System.out.println("Data saved with ID: " + id);
+    }
+
+    public String fetchData(int id) {
+        return database.get(id);
+    }
+}
+
+// MyComponent.java
+package com.example;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
+@Component
+public class MyComponent {
+
+    @Autowired
+    @Qualifier("myService")
+    private MyService myService;
+
+    @Value("${my.property}")
+    private String myProperty;
+
+    @PostConstruct
+    public void init() {
+        System.out.println("MyComponent initialized with property: " + myProperty);
+        myService.performService();
+    }
+
+    @PreDestroy
+    public void cleanup() {
+        System.out.println("MyComponent cleanup");
+    }
+}
+
+// SimpleDemoApplication.java
+package com.example;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class SimpleDemoApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(SimpleDemoApplication.class, args);
+    }
+}
+```
