@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -29,21 +30,25 @@ public class EmployeeDAO {
         return jdbcTemplate.query(sql, new Object[]{department}, new BeanPropertyRowMapper<>(Employee.class));
     }
 
+    @Transactional
     public int save(Employee employee) {
         String sql = "INSERT INTO employees (id, name, dob, address, department) VALUES (?, ?, ?, ?, ?)";
         return jdbcTemplate.update(sql, employee.getId(), employee.getName(), employee.getDob(), employee.getAddress(), employee.getDepartment());
     }
 
+    @Transactional
     public int update(Employee employee) {
         String sql = "UPDATE employees SET name = ?, dob = ?, address = ?, department = ? WHERE id = ?";
         return jdbcTemplate.update(sql, employee.getName(), employee.getDob(), employee.getAddress(), employee.getDepartment(), employee.getId());
     }
 
+    @Transactional
     public int deleteById(String id) {
         String sql = "DELETE FROM employees WHERE id = ?";
         return jdbcTemplate.update(sql, id);
     }
 
+    @Transactional
     public int saveAll(List<Employee> employees) {
         for (Employee employee : employees) {
             save(employee);
