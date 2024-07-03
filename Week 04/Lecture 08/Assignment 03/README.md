@@ -63,6 +63,10 @@ This API delete employee with id
 This API transfer engineering employee to another database
 ![img.png](img.png)
 
+6. POST /api/v1/employee/failed-transfer-engineering-employees
+   This API failed to transfer engineering employee to another database
+![img_7.png](img_7.png)
+
 #### Running the Application
 1. Ensure you have Java, Maven and PostgreSQL installed on your system.
 2. Create database lecture5employeecrud in PostgreSQL.
@@ -77,6 +81,7 @@ mvn spring-boot:run
 5. The API will run in localhost:8080
 
 #### Testing the Transaction
+##### Using success API
 Before transfer:
 ![img_1.png](img_1.png)
 ![img_2.png](img_2.png)
@@ -84,3 +89,12 @@ Before transfer:
 After transfer:
 ![img_3.png](img_3.png)
 ![img_4.png](img_4.png)
+
+##### Using failed API
+Before transfer:
+![img_1.png](img_1.png)
+![img_2.png](img_2.png)
+
+After transfer:
+![img_5.png](img_5.png)
+![img_6.png](img_6.png)

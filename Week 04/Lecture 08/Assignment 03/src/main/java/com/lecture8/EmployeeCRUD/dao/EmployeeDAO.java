@@ -3,6 +3,7 @@ package com.lecture8.EmployeeCRUD.dao;
 import com.lecture8.EmployeeCRUD.models.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -62,7 +63,7 @@ public class EmployeeDAO {
         return employees.size();
     }
 
-    @Transactional(transactionManager = "transactionManager1")
+    @Transactional(transactionManager = "chainedTransactionManager", rollbackFor = Exception.class)
     public void transferEmployeesToNewDatabase() {
         // Fetch employees with department = 'engineering' from jdbcTemplate1
         String sqlSelect = "SELECT * FROM employees WHERE department = ?";
@@ -80,6 +81,29 @@ public class EmployeeDAO {
         String sqlDelete = "DELETE FROM employees WHERE id = ?";
         for (Employee employee : engineeringEmployees) {
             jdbcTemplate1.update(sqlDelete, employee.getId());
+        }
+    }
+
+    @Transactional(transactionManager = "chainedTransactionManager", rollbackFor = Exception.class)
+    public void transferEmployeesToNewDatabaseFail() {
+        try {
+            String sqlSelect = "SELECT * FROM employees WHERE department = ?";
+            List<Employee> engineeringEmployees = jdbcTemplate1.query(sqlSelect, new Object[]{"Engineering"},
+                    new BeanPropertyRowMapper<>(Employee.class));
+
+            String sqlInsert = "INSERT INTO employees (id, name, dob, address, department) VALUES (?, ?, ?, ?, ?)";
+            for (Employee employee : engineeringEmployees) {
+                jdbcTemplate2.update(sqlInsert, employee.getId(), employee.getName(), employee.getDob(),
+                        employee.getAddress(), employee.getDepartment());
+            }
+
+            String sqlDelete = "DELETE FROM wrongtable WHERE id = ?";
+            for (Employee employee : engineeringEmployees) {
+                jdbcTemplate1.update(sqlDelete, employee.getId());
+            }
+
+        } catch (DataAccessException e) {
+            throw new RuntimeException("Failed to transfer employees: " + e.getMessage(), e);
         }
     }
 }

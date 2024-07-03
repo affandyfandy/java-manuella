@@ -124,4 +124,14 @@ public class EmployeeController {
             return ResponseEntity.status(500).body("Failed to transfer engineering employees: " + e.getMessage());
         }
     }
+
+    @PostMapping(value = "/failed-transfer-engineering-employees")
+    public ResponseEntity<String> transferEngineeringEmployeesFail() {
+        try {
+            employeeDAO.transferEmployeesToNewDatabaseFail();
+            return ResponseEntity.ok("Engineering transferred successfully");
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("Failed to transfer engineering employees: " + e.getMessage());
+        }
+    }
 }
