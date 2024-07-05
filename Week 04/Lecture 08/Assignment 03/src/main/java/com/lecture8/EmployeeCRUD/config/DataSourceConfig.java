@@ -15,9 +15,9 @@ public class DataSourceConfig {
     public DataSource dataSource1() {
         DataSourceBuilder<?> dataSourceBuilder = DataSourceBuilder.create();
         dataSourceBuilder.driverClassName("org.postgresql.Driver");
-        dataSourceBuilder.url("jdbc:postgresql://localhost:5432/lecture8employeecrud");
-        dataSourceBuilder.username("postgres");
-        dataSourceBuilder.password("password");
+        dataSourceBuilder.url(System.getenv("DB_URL"));
+        dataSourceBuilder.username(System.getenv("DB_USERNAME"));
+        dataSourceBuilder.password(System.getenv("DB_PASSWORD"));
         return dataSourceBuilder.build();
     }
 
@@ -25,9 +25,9 @@ public class DataSourceConfig {
     public DataSource dataSource2() {
         DataSourceBuilder<?> dataSourceBuilder = DataSourceBuilder.create();
         dataSourceBuilder.driverClassName("org.postgresql.Driver");
-        dataSourceBuilder.url("jdbc:postgresql://localhost:5432/lecture8employeecrud2");
-        dataSourceBuilder.username("postgres");
-        dataSourceBuilder.password("password");
+        dataSourceBuilder.url(System.getenv("DB_URL2"));;
+        dataSourceBuilder.username(System.getenv("DB_USERNAME"));
+        dataSourceBuilder.password(System.getenv("DB_PASSWORD"));
         return dataSourceBuilder.build();
     }
 
