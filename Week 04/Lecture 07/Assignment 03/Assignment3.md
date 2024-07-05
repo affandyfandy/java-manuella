@@ -1,5 +1,8 @@
 ## Assignment 03
 
+#### Task 1 and 2
+Bean scope and controller already added to [Assignment 2](https://github.com/affandyfandy/java-manuella/tree/Week_4_SpringCore/Week%2004/Lecture%2007/Assignment%2002).
+
 #### Inject prototype into singleton
 1. Using @Lookup Method Injection
 The @Lookup annotation tells Spring to override a method and return a new instance of the specified bean when called.
