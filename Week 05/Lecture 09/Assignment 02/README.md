@@ -75,8 +75,8 @@ INSERT INTO employee (id, first_name, last_name, email) VALUES
 
 
 ### The webview
-![img.png](img.png)
+![img.png](img/img.png)
 
-![img_1.png](img_1.png)
+![img_1.png](img/img_1.png)
 
-![img_2.png](img_2.png)
+![img_2.png](img/img_2.png)
