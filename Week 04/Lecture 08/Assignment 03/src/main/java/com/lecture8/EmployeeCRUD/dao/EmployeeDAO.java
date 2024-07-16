@@ -4,11 +4,14 @@ import com.lecture8.EmployeeCRUD.models.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.List;
 
 @Repository
@@ -57,32 +60,50 @@ public class EmployeeDAO {
 
     @Transactional(transactionManager = "transactionManager1")
     public int saveAll(List<Employee> employees) {
-        for (Employee employee : employees) {
-            save(employee);
-        }
-        return employees.size();
+        String sql = "INSERT INTO employees (id, name, dob, address, department) VALUES (?, ?, ?, ?, ?)";
+        int[] updateCounts = jdbcTemplate1.batchUpdate(sql, new BatchPreparedStatementSetter() {
+            @Override
+            public void setValues(PreparedStatement ps, int i) throws SQLException {
+                Employee employee = employees.get(i);
+                ps.setString(1, employee.getId());
+                ps.setString(2, employee.getName());
+                ps.setDate(3, java.sql.Date.valueOf(employee.getDob()));
+                ps.setString(4, employee.getAddress());
+                ps.setString(5, employee.getDepartment());
+            }
+
+            @Override
+            public int getBatchSize() {
+                return employees.size();
+            }
+        });
+        return updateCounts.length;
     }
+
 
     @Transactional(transactionManager = "chainedTransactionManager", rollbackFor = Exception.class)
     public void transferEmployeesToNewDatabase() {
-        // Fetch employees with department = 'engineering' from jdbcTemplate1
-        String sqlSelect = "SELECT * FROM employees WHERE department = ?";
-        List<Employee> engineeringEmployees = jdbcTemplate1.query(sqlSelect, new Object[]{"Engineering"},
-                new BeanPropertyRowMapper<>(Employee.class));
+        try {
+            String sqlSelect = "SELECT * FROM employees WHERE department = ?";
+            List<Employee> engineeringEmployees = jdbcTemplate1.query(sqlSelect, new Object[]{"Engineering"},
+                    new BeanPropertyRowMapper<>(Employee.class));
 
-        // Insert employees into jdbcTemplate2
-        String sqlInsert = "INSERT INTO employees (id, name, dob, address, department) VALUES (?, ?, ?, ?, ?)";
-        for (Employee employee : engineeringEmployees) {
-            jdbcTemplate2.update(sqlInsert, employee.getId(), employee.getName(), employee.getDob(),
-                    employee.getAddress(), employee.getDepartment());
-        }
+            String sqlInsert = "INSERT INTO employees (id, name, dob, address, department) VALUES (?, ?, ?, ?, ?)";
+            for (Employee employee : engineeringEmployees) {
+                jdbcTemplate2.update(sqlInsert, employee.getId(), employee.getName(), employee.getDob(),
+                        employee.getAddress(), employee.getDepartment());
+            }
 
-        // Delete transferred employees from jdbcTemplate1
-        String sqlDelete = "DELETE FROM employees WHERE id = ?";
-        for (Employee employee : engineeringEmployees) {
-            jdbcTemplate1.update(sqlDelete, employee.getId());
+            String sqlDelete = "DELETE FROM employees WHERE id = ?";
+            for (Employee employee : engineeringEmployees) {
+                jdbcTemplate1.update(sqlDelete, employee.getId());
+            }
+
+        } catch (DataAccessException e) {
+            throw new RuntimeException("Failed to transfer employees: " + e.getMessage(), e);
         }
     }
+
 
     @Transactional(transactionManager = "chainedTransactionManager", rollbackFor = Exception.class)
     public void transferEmployeesToNewDatabaseFail() {

@@ -33,39 +33,39 @@ INSERT INTO employees (id, name, dob, address, department) VALUES
 This Back-end provides some API for Employee database:
 1. GET /api/v1/employee
 This API give all employees in the database.
-![alt text](image.png)
+![alt text](img/image.png)
 
 2. GET /api/v1/employee/{id}
 This API give employee that have the requested id.
-![alt text](image-1.png)
+![alt text](img/image-1.png)
 
 3. GET /api/v1/employee/department/{department}
 This API give employees that have the requested id.
-![alt text](image-4.png)
+![alt text](img/image-4.png)
 
 4. POST /api/v1/employee
 This API will save new employee to database.
-![alt text](image-3.png)
+![alt text](img/image-3.png)
 
 5. POST /api/v1/employee/upload-csv
 This API will save new employee to database from csv.
-![alt text](image-5.png)
+![alt text](img/image-5.png)
 
 6. PUT /api/v1/employee/{id}
 This API update already exist data that have the requested id.
-![alt text](image-6.png)
+![alt text](img/image-6.png)
 
 4. DELETE /api/v1/employee/{id}
 This API delete employee with id
-![alt text](image-7.png)
+![alt text](img/image-7.png)
 
 5. POST /api/v1/employee/transfer-engineering-employees
 This API transfer engineering employee to another database
-![img.png](img.png)
+![img.png](img/img.png)
 
 6. POST /api/v1/employee/failed-transfer-engineering-employees
    This API failed to transfer engineering employee to another database
-![img_7.png](img_7.png)
+![img_7.png](img/img_7.png)
 
 #### Running the Application
 1. Ensure you have Java, Maven and PostgreSQL installed on your system.
@@ -83,18 +83,18 @@ mvn spring-boot:run
 #### Testing the Transaction
 ##### Using success API
 Before transfer:
-![img_1.png](img_1.png)
-![img_2.png](img_2.png)
+![img_1.png](img/img_1.png)
+![img_2.png](img/img_2.png)
 
 After transfer:
-![img_3.png](img_3.png)
-![img_4.png](img_4.png)
+![img_3.png](img/img_3.png)
+![img_4.png](img/img_4.png)
 
 ##### Using failed API
 Before transfer:
-![img_1.png](img_1.png)
-![img_2.png](img_2.png)
+![img_1.png](img/img_1.png)
+![img_2.png](img/img_2.png)
 
 After transfer:
-![img_5.png](img_5.png)
-![img_6.png](img_6.png)
+![img_5.png](img/img_5.png)
+![img_6.png](img/img_6.png)
