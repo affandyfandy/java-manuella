@@ -148,8 +148,24 @@ public class EmployeeSpecificationsBuilder {
     }
 }
 ```
-4. EmployeeController Class
+4. EmployeeService Class
    Handles the search requests and uses the EmployeeSpecificationsBuilder to build the dynamic query.
+```java
+// other method...
+public List<Employee> search(String search) {
+        EmployeeSpecificationsBuilder builder = new EmployeeSpecificationsBuilder();
+        Pattern pattern = Pattern.compile("(\\w+?)(:|<|>)(\\w+?),");
+        Matcher matcher = pattern.matcher(search + ",");
+        while (matcher.find()) {
+            builder.with(matcher.group(1), matcher.group(2), matcher.group(3));
+        }
+
+        Specification<Employee> spec = builder.build();
+        return employeeRepository.findAll(spec);
+    }
+```
+5. EmployeeController Class
+    Uses search in the service.
 ```java
 // other method...
 @GetMapping("/search")
