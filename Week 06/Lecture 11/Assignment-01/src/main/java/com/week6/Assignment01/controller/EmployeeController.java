@@ -2,14 +2,21 @@ package com.week6.Assignment01.controller;
 
 import com.week6.Assignment01.model.Employee;
 import com.week6.Assignment01.service.EmployeeService;
+import com.week6.Assignment01.service.EmployeeSpecificationsBuilder;
+import com.week6.Assignment01.specifications.EmployeeSpecification;
+import com.week6.Assignment01.specifications.SearchCriteria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @RestController
 @RequestMapping("api/v1/employees")
@@ -54,5 +61,10 @@ public class EmployeeController {
     public ResponseEntity<Void> deleteEmployee(@PathVariable int id){
         employeeService.deleteEmployee(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @GetMapping("/search")
+    public List<Employee> search(@RequestParam(value = "search") String search) {
+        return employeeService.search(search);
     }
 }

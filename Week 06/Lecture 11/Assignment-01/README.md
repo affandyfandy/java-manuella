@@ -1,4 +1,4 @@
-## Assignment 01: Spring MVC Simple Demo
+## Assignment 01: Spring Data JPA Employee Management
 
 ### Overview
 This repository contains a REST API for managing employee records, departments, and salaries. It is built using the Spring Boot framework with RESTful services and a relational database.
@@ -14,19 +14,13 @@ This repository contains a REST API for managing employee records, departments, 
 - Manage Departments: View a list of all departments, add new departments, update department details, and delete departments.
 - Manage Salaries: Add or update employee salaries.
 - Manage Titles: Add or update employee titles.
+- Dynamic Querying: Allows for flexible and dynamic searching of employee records based on various criteria.
 
 ### Composite Key with JPA
 In this application, composite keys are used in entities such as DeptEmp, DeptManager, Salary, and Title. Below is an example of how composite keys are implemented using @IdClass in DeptEmp and DeptManager entities.
 
 Example: DeptEmpId Composite Key
 ```java
-package com.week6.Assignment01.model;
-
-import lombok.Getter;
-import lombok.Setter;
-
-import java.io.Serializable;
-
 @Getter
 @Setter
 public class DeptEmpId implements Serializable {
@@ -47,14 +41,6 @@ public class DeptEmpId implements Serializable {
 
 Example: DeptEmp Entity
 ```java
-package com.week6.Assignment01.model;
-
-import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-
-import java.util.Date;
-
 @Entity
 @Getter
 @Setter
@@ -90,6 +76,87 @@ public class DeptEmp {
 - Utilizes @IdClass(DeptEmpId.class) to specify DeptEmpId as the composite key class.
 - Defines @ManyToOne associations with Employee and Department, employing @JoinColumn to indicate the foreign key columns.
 
+### Dynamic Querying with Spring Data JPA Specifications
+The application supports dynamic querying using Spring Data JPA Specifications. This allows for flexible and complex search operations without needing to write custom query methods for each search requirement.
+1. SearchCriteria Class
+   Encapsulates the key, operation, and value for each search criterion.
+```java
+@Getter
+@Setter
+@AllArgsConstructor
+public class SearchCriteria {
+    private String key;
+    private String operation;
+    private Object value;
+}
+```
+2. EmployeeSpecification Class
+   Implements the Specification<Employee> interface to build dynamic predicates based on the search criteria.
+```java
+public class EmployeeSpecification implements Specification<Employee> {
+
+    private SearchCriteria criteria;
+
+    public EmployeeSpecification(SearchCriteria criteria) {
+        this.criteria = criteria;
+    }
+
+    @Override
+    public Predicate toPredicate(Root<Employee> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
+        if (criteria.getOperation().equalsIgnoreCase(">")) {
+            return builder.greaterThanOrEqualTo(root.get(criteria.getKey()), criteria.getValue().toString());
+        } else if (criteria.getOperation().equalsIgnoreCase("<")) {
+            return builder.lessThanOrEqualTo(root.get(criteria.getKey()), criteria.getValue().toString());
+        } else if (criteria.getOperation().equalsIgnoreCase(":")) {
+            if (root.get(criteria.getKey()).getJavaType() == String.class) {
+                return builder.like(root.get(criteria.getKey()), "%" + criteria.getValue() + "%");
+            } else {
+                return builder.equal(root.get(criteria.getKey()), criteria.getValue());
+            }
+        }
+        return null;
+    }
+}
+```
+3. EmployeeSpecificationsBuilder Class
+   Builds a list of EmployeeSpecification objects and combines them into a single Specification.
+```java
+public class EmployeeSpecificationsBuilder {
+    private final List<SearchCriteria> params;
+
+    public EmployeeSpecificationsBuilder() {
+        params = new ArrayList<>();
+    }
+
+    public EmployeeSpecificationsBuilder with(String key, String operation, Object value) {
+        params.add(new SearchCriteria(key, operation, value));
+        return this;
+    }
+
+    public Specification<Employee> build() {
+        if (params.isEmpty()) {
+            return null;
+        }
+
+        Specification<Employee> result = new EmployeeSpecification(params.get(0));
+
+        for (int i = 1; i < params.size(); i++) {
+            result = Specification.where(result).and(new EmployeeSpecification(params.get(i)));
+        }
+
+        return result;
+    }
+}
+```
+4. EmployeeController Class
+   Handles the search requests and uses the EmployeeSpecificationsBuilder to build the dynamic query.
+```java
+// other method...
+@GetMapping("/search")
+    public List<Employee> search(@RequestParam(value = "search") String search) {
+        return employeeService.search(search);
+    }
+```
 
 ### Folder structure
 ```cmd
@@ -166,3 +233,9 @@ public class DeptEmp {
 ![img_10.png](img/img_10.png)
 
 ![img_11.png](img/img_11.png)
+
+![img.png](img/img_12.png)
+
+![img_1.png](img/img_13.png)
+
+![img_2.png](img/img_14.png)

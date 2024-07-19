@@ -28,11 +28,11 @@ public class DeptEmp {
     @Column(name = "to_date")
     private Date toDate;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "emp_no", insertable = false, updatable = false)
     private Employee employee;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "dept_no", insertable = false, updatable = false)
     private Department department;
 }

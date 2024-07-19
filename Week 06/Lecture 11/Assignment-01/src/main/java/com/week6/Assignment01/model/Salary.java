@@ -28,7 +28,7 @@ public class Salary {
     @Column(name = "to_date")
     private Date toDate;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "emp_no", insertable = false, updatable = false)
     private Employee employee;
 }
