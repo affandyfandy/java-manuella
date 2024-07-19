@@ -190,11 +190,16 @@ public class EmployeeSpecificationsBuilder {
 │               │       SalaryRepository.java
 │               │       TitleRepository.java
 │               │
-│               └───service
-│                       DepartmentService.java
-│                       EmployeeService.java
-│                       SalaryService.java
-│                       TitleService.java
+│               ├───service
+│               │       DepartmentService.java
+│               │       EmployeeService.java
+│               │       EmployeeSpecificationsBuilder.java
+│               │       SalaryService.java
+│               │       TitleService.java
+│               │
+│               └───specifications
+│                       EmployeeSpecification.java
+│                       SearchCriteria.java
 │
 └───resources
     │   application.properties
