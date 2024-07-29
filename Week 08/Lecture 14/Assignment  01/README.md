@@ -7,7 +7,7 @@ In Spring, the `OncePerRequestFilter` is a base class for filter implementations
 - **Single Execution**: Ensures the filter logic runs only once per request, even in the presence of other filters.
 - **Ease of Use**: Simplifies the creation of custom filters by providing a base class that handles repetitive tasks like checking if the filter has already been executed.
 
-### Applying OncePerRequestFilter for Synchronous Requests
+### Applying `OncePerRequestFilter` for Synchronous Requests
 For synchronous requests, the `OncePerRequestFilter` works as intended by running the filter logic just once per request. Let's define an `AuthenticationFilter` class that extends `OncePerRequestFilter` and overrides the `doFilterInternal()` method:
 ```java
 public class AuthenticationFilter extends OncePerRequestFilter {
@@ -22,7 +22,7 @@ public class AuthenticationFilter extends OncePerRequestFilter {
 ```
 `OncePerRequestFilter` only supports HTTP request so we don't need to cast the request and response objects as required when directly implementing the Filter interface.
 
-### Applying OncePerRequestFilter for Synchronous Requests
+### Applying `OncePerRequestFilter` for Synchronous Requests
 By default, OncePerRequestFilter does not apply to asynchronous requests. To change this, we can override `shouldNotFilterAsyncDispatch()` and `shouldNotFilterErrorDispatch()` methods.
 - **`shouldNotFilterAsyncDispatch()`**: Decides if the filter should be applied to asynchronous dispatches. Returning false ensures the filter runs once per thread, even for async dispatches.
 - **`shouldNotFilterErrorDispatch()`**: Decides if the filter should be applied to error dispatches.
