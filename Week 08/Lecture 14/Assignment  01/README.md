@@ -62,10 +62,15 @@ This implementation checks the request URI, and if it matches /public, the filte
 
 ### Demonstrative Example
 Imagine we have a web application with an endpoint to upload files and another endpoint to check the application's status. We want to log all requests for security and debugging purposes but don't want to log status check requests because they are frequent and can clutter the logs.
-##### Controller Handling File Uploads
+##### Controller Handling Public Resource and File Uploads
 ```java
 @Controller
-public class FileUploadController {
+public class GeneralController {
+    @GetMapping("/public")
+    @ResponseBody
+    public String publicResource() {
+        return "This is a public resource.";
+    }
     @PostMapping("/upload")
     @ResponseBody
     public String handleFileUpload(@RequestParam("file") MultipartFile file) {
@@ -79,7 +84,6 @@ public class FileUploadController {
 ```java
 @Component
 public class RequestLoggingFilter extends OncePerRequestFilter {
-
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
