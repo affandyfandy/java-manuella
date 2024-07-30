@@ -2,6 +2,7 @@ package com.week8.Assignment0203.controller;
 
 import com.week8.Assignment0203.data.model.Employee;
 import com.week8.Assignment0203.service.EmployeeService;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,7 +13,6 @@ import java.util.List;
 @AllArgsConstructor
 public class EmployeeController {
     private final EmployeeService employeeService;
-
     @GetMapping
     public List<Employee> getAllEmployees(){
         return employeeService.getAllEmployees();
@@ -37,10 +37,5 @@ public class EmployeeController {
     @DeleteMapping("/{id}")
     public void deleteEmployee(@PathVariable Long id) {
         employeeService.deleteEmployee(id);
-    }
-
-    @GetMapping("/header")
-    public String getHeader(@RequestHeader(value = "api-key") String apiKey) {
-        return "API Key: " + apiKey;
     }
 }
