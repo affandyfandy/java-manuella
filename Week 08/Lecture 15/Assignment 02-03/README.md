@@ -129,14 +129,14 @@ public class InterceptorConfig implements WebMvcConfigurer {
 
 ## Screenshots
 The request should contain api-key
-![img.png](img.png)
+![img.png](img/img.png)
 The response header contain source, timestamp and username
-![img_3.png](img_3.png)
+![img_3.png](img/img_3.png)
 Last used is set in database
-![img_1.png](img_1.png)
+![img_1.png](img/img_1.png)
 
 If there is no api-key in header, the response is unauthorized
-![img_2.png](img_2.png)
+![img_2.png](img/img_2.png)
 
 Header print in controller
-![img_4.png](img_4.png)
+![img_4.png](img/img_4.png)
