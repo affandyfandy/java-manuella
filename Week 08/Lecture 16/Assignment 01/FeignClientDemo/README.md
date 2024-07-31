@@ -175,6 +175,6 @@ public class PostFeignController {
 2. The application will be accessible at `http://localhost:8080`
 
 ## Screenshots
-![img.png](img.png)
+![img.png](img/img.png)
 
-![img_1.png](img_1.png)
+![img_1.png](img/img_1.png)
