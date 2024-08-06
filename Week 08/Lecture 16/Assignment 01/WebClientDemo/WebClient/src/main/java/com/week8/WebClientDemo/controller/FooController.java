@@ -6,10 +6,11 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/test/foos")
 public class FooController {
-
     private final FooService fooService;
 
     public FooController(FooService fooService) {
@@ -39,5 +40,20 @@ public class FooController {
     @GetMapping
     public Flux<Foo> getAllFoos() {
         return fooService.getAllFoos();
+    }
+
+    @GetMapping("/object-array")
+    public Mono<List<Foo>> getFoosWithObjectArray() {
+        return fooService.getFoosWithObjectArray();
+    }
+
+    @GetMapping("/array")
+    public Mono<List<Foo>> getFoosWithArray() {
+        return fooService.getFoosWithArray();
+    }
+
+    @GetMapping("/list")
+    public Mono<List<Foo>> getFoosWithList() {
+        return fooService.getFoosWithList();
     }
 }
