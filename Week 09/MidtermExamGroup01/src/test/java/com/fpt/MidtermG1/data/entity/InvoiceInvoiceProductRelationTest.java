@@ -8,9 +8,9 @@ import java.sql.Timestamp;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class InvoiceInvoiceProductRelationTest {
+class InvoiceInvoiceProductRelationTest {
     @Test
-    public void testInvoiceInvoiceProductRelation() {
+    void testInvoiceInvoiceProductRelation() {
         Invoice invoice = Invoice.builder()
                 .id("invoice123")
                 .invoiceAmount(new BigDecimal("200.00"))

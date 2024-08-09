@@ -9,7 +9,6 @@ import java.sql.Timestamp;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class InvoiceProductDTOTest {
-
     @Test
     public void testToEntity() {
         InvoiceProductDTO dto = InvoiceProductDTO.builder()

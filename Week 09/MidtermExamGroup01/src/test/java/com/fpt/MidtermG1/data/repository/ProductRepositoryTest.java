@@ -12,15 +12,16 @@ import org.springframework.test.context.ActiveProfiles;
 import static org.assertj.core.api.Assertions.*;
 
 import java.math.BigDecimal;
+import java.util.Optional;
 
 @DataJpaTest
 @ActiveProfiles("test")
-public class ProductRepositoryTest {
+class ProductRepositoryTest {
     @Autowired
     private ProductRepository productRepository;
 
     @Test
-    public void testFindByNameContaining() {
+    void testFindByNameContaining() {
         Product product = new Product();
         product.setName("Test Product");
         product.setPrice(new BigDecimal("100.00"));
@@ -34,7 +35,7 @@ public class ProductRepositoryTest {
     }
 
     @Test
-    public void testFindByStatus() {
+    void testFindByStatus() {
         Product product = new Product();
         product.setName("Another Product");
         product.setPrice(new BigDecimal("150.00"));
@@ -45,5 +46,20 @@ public class ProductRepositoryTest {
 
         assertThat(result).hasSize(1);
         assertThat(result.getContent().get(0).getStatus()).isEqualTo(Status.INACTIVE);
+    }
+
+    @Test
+    void testFindById() {
+        Product product = new Product();
+        product.setName("Unique Product");
+        product.setPrice(new BigDecimal("200.00"));
+        product.setStatus(Status.ACTIVE);
+        product = productRepository.save(product);
+
+        Optional<Product> foundProduct = productRepository.findById(product.getId());
+
+        assertThat(foundProduct).isPresent();
+        assertThat(foundProduct.get().getName()).isEqualTo("Unique Product");
+        assertThat(foundProduct.get().getPrice()).isEqualTo(new BigDecimal("200.00"));
     }
 }

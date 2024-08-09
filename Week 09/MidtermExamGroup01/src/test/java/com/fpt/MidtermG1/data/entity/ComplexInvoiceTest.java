@@ -10,9 +10,9 @@ import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ComplexInvoiceTest {
+class ComplexInvoiceTest {
     @Test
-    public void testComplexInvoiceAndProducts() {
+    void testComplexInvoiceAndProducts() {
         Product product1 = Product.builder()
                 .id(1)
                 .name("Product 1")
