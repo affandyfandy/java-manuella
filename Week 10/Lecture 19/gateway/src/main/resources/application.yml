@@ -1,0 +1,16 @@
+server:
+  port: 8080
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: invoice-route
+          uri: http://localhost:8081/api/v1/invoices/
+          predicates:
+            - Path=/api/v1/invoices/**
+
+        - id: product-route
+          uri: http://localhost:8082/api/v1/products/
+          predicates:
+            - Path=/api/v1/products/**
