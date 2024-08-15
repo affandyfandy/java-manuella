@@ -23,14 +23,9 @@ public class ApiKeyFilter extends AbstractGatewayFilterFactory<ApiKeyFilter.Conf
             if (apiKey == null) {
                 return Mono.error(new RuntimeException("API key is missing"));
             }
-            System.out.println("API key received: " + apiKey);
 
             return authService.validateAPIKey(apiKey)
-                    .doOnNext(isValid -> {
-                        System.out.println("API key validation result: " + isValid);
-                    })
                     .flatMap(isValid -> {
-                        System.out.println("Is API key valid inside flatMap: " + isValid);
                         if (isValid) {
                             return chain.filter(exchange);
                         } else {

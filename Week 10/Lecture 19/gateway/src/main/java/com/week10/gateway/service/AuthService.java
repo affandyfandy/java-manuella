@@ -24,9 +24,7 @@ public class AuthService {
                 .retrieve()
                 .bodyToMono(String.class)
                 .map(Boolean::parseBoolean)
-                .doOnNext(isValid -> System.out.println("Received validation result from auth-api: " + isValid))
                 .onErrorResume(error -> {
-                    System.out.println("Error during API key validation: " + error.getMessage());
                     return Mono.just(false);
                 });
     }
