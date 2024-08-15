@@ -27,7 +27,6 @@ public class ApiKeyFilter extends AbstractGatewayFilterFactory<ApiKeyFilter.Conf
 
             return authService.validateAPIKey(apiKey)
                     .doOnNext(isValid -> {
-                        System.out.println("API key validation result type: " + isValid.getClass().getName());
                         System.out.println("API key validation result: " + isValid);
                     })
                     .flatMap(isValid -> {
@@ -43,6 +42,6 @@ public class ApiKeyFilter extends AbstractGatewayFilterFactory<ApiKeyFilter.Conf
     }
 
     public static class Config {
-        // Config properties
+
     }
 }

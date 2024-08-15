@@ -17,14 +17,17 @@ public class AuthService {
     }
 
     public Mono<Boolean> validateAPIKey(String apiKey) {
-        System.out.println("API key sent for validation: " + apiKey);
         return webClient.get()
-                .uri(uriBuilder -> uriBuilder.path("/validate-api-key")
+                .uri(uriBuilder -> uriBuilder.path("/api/v1/auth/validate-api-key")
                         .queryParam("apiKey", apiKey)
                         .build())
                 .retrieve()
                 .bodyToMono(String.class)
                 .map(Boolean::parseBoolean)
-                .onErrorReturn(false);
+                .doOnNext(isValid -> System.out.println("Received validation result from auth-api: " + isValid))
+                .onErrorResume(error -> {
+                    System.out.println("Error during API key validation: " + error.getMessage());
+                    return Mono.just(false);
+                });
     }
 }

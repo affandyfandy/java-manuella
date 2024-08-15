@@ -1,6 +1,8 @@
 server:
   port: 8083
 spring:
+  application:
+    name: auth-api
   datasource:
     url: jdbc:mysql://localhost:3306/authenticationdb
     username: root
@@ -8,3 +10,9 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
+  instance:
+    preferIpAddress: true
