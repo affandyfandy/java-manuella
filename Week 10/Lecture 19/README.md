@@ -5,7 +5,7 @@ The Gateway Service is a Spring Cloud Gateway application that acts as a single 
 
 The Gateway Service leverages Spring Cloud Gateway to manage routing, load balancing, and filtering. It uses non-blocking, asynchronous processing to handle high traffic and provide scalability. By configuring routes in the gateway, requests are dynamically forwarded to the appropriate backend service based on the URL path and other criteria.
 
-The ApiKeyFilter is also implemented to ensures requests to your microservices are authenticated by validating API keys. Its main purpose is to verify that incoming requests contain a valid API key before routing them to backend services. The API keys are stored and managed in a MySQL database. This allows for secure and centralized management of keys. The AuthService interacts with this database to validate the API keys.
+The ApiKeyFilter is also implemented to ensures requests microservices are authenticated by validating API keys. Its main purpose is to verify that incoming requests contain a valid API key before routing them to backend services. The API keys are stored and managed in a MySQL database. This allows for secure and centralized management of keys. The AuthService interacts with this database to validate the API keys.
 
 Eureka provides service discovery for the microservices, allowing the Gateway Service to dynamically route requests to available instances of the services. Each service registers itself with Eureka, and the Gateway Service uses Eureka to resolve service instances.
 
@@ -33,10 +33,10 @@ The Invoice API provides CRUD operations for invoices, while the Product API off
 
 4. **Gateway Service** (http://localhost:8080)
 
-   The Gateway Service serves as the facade for the Invoice API and Product API. It simplifies the client’s interaction by exposing a unified API that routes requests to the appropriate backend service based on the URL path. The gateway is configured to forward requests to the correct service:
+   The Gateway Service serves as the facade for the Invoice API and Product API. It simplifies the client’s interaction by exposing a unified API that routes requests to the appropriate backend service based on the URL path. The gateway is configured to forward requests to the correct service that use eureka in the [application.yml](gateway%2Fsrc%2Fmain%2Fresources%2Fapplication.yml)
 5. **Discovery Service** (http://localhost:8761)
 
-   The Discovery Service (Eureka) provides service discovery functionality, allowing microservices to register themselves and discover other services. This helps in load balancing and routing requests dynamically to available service instances. The Eureka server URL is used by the Gateway Service to locate the services for routing purposes.
+   The Discovery Service (Eureka) provides service discovery functionality, allowing microservices to register themselves and discover other services. This helps in routing requests dynamically to available service instances. The Eureka server URL is used by the Gateway Service to locate the services for routing purposes.
 
 
 Requests to /invoices are routed to the Invoice API.
