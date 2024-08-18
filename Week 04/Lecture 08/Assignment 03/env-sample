@@ -1,0 +1,7 @@
+# Database 1
+DB_URL=jdbc:postgresql://localhost:5432/lecture8employeecrud
+DB_USERNAME=...
+DB_PASSWORD=...
+
+# Database 2
+DB_URL2=jdbc:postgresql://localhost:5432/lecture8employeecrud2
