@@ -1,18 +1,16 @@
-import java.io.PrintWriter;
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.Map;
-import java.util.List;
+import java.io.PrintWriter;
 import java.util.HashMap;
-import java.util.ArrayList;
-import java.util.stream.Collectors;
-import java.util.stream.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
-import java.util.HashSet;
+import java.util.stream.Collectors;
 
 public class Assignment6_3{
     public void removeDuplicates(String inputFile, String outputFile, String keyFieldName){
@@ -36,9 +34,9 @@ public class Assignment6_3{
                 throw new IllegalArgumentException("Key field name not found in the header.");
             }
             
+            Set<String> uniqueKeys = new HashSet<>();
             List<String> lines = reader.lines().toList();
 
-            Set<String> uniqueKeys = new HashSet<>();
             List<String> noDuplicate = lines.stream()
                                             .filter(l -> {
                                                 String[] fields = l.split(",");
