@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="3dde0743-15e4-46da-a13d-64b679595610" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WebClient/src/test/java/com/week8/WebClientDemo/FooControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/main/java/com/week8/WebClientDemo/controller/FooController.java" beforeDir="false" afterPath="$PROJECT_DIR$/WebClient/src/main/java/com/week8/WebClientDemo/controller/FooController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/main/java/com/week8/WebClientDemo/service/FooService.java" beforeDir="false" afterPath="$PROJECT_DIR$/WebClient/src/main/java/com/week8/WebClientDemo/service/FooService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/test/java/com/week8/WebClientDemo/WebClientDemoApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/WebClient/src/test/java/com/week8/WebClientDemo/WebClientDemoApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/test/java/com/week8/WebClientDemo/WebTestClientConfig.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="2k5oyMW5AttbsAGN1ouhn4VbAxH" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "Week__8__SpringFilterInterceptor",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/GitHub/java-manuella/Week 08/Lecture 16/Assignment 01/WebClientDemo"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3dde0743-15e4-46da-a13d-64b679595610" name="Changes" comment="" />
+      <created>1722583052866</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1722583052866</updated>
+    </task>
+    <servers />
+  </component>
+</project>
