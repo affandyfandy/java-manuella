@@ -1,0 +1,17 @@
+.home-container{
+    display: flex;
+    flex-direction: column;
+}
+
+h1 {
+    font-weight: bold;
+    color: #c3c2c7;
+    text-align: center;
+    margin: 0;
+    padding: 50px 0;
+}
+  
+app-search-bar {
+    margin-top: 20px;
+    padding: 0 300px;
+}
