@@ -1,8 +1,0 @@
-<div class="product-list">
-    <app-search-bar 
-        (filterChange)="applyFilter($event)" 
-        (sortChange)="sortData($event)" 
-        (search)="onSearch()">
-    </app-search-bar>
-    <app-product-table [products]="filteredProducts"></app-product-table>
-</div>  
