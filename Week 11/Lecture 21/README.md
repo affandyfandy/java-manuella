@@ -1,7 +1,7 @@
 # Week 11: Angular
 
 ## [Angular Demo](https://github.com/helenhash/angular-demo)
-![alt text](image.png)
+![alt text](img/image.png)
 This is a customer management web using angular front-end and json-server backend. The service is injected via the constructor by `@Injectable` annotation in [CustomerService](https://github.com/helenhash/angular-demo/blob/main/src/app/services/customer.service.ts).
 
 ## Angular Component Lifecycle Overview
@@ -182,8 +182,8 @@ ng serve
 ```
 
 ### Screenshots
-![alt text](image-2.png)
+![alt text](img/image-2.png)
 
-![alt text](image-3.png)
+![alt text](img/image-3.png)
 
-![alt text](image-4.png)
+![alt text](img/image-4.png)
