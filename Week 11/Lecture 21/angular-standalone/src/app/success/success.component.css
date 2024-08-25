@@ -1,0 +1,25 @@
+.success-card {
+    width: 350px;
+    margin: auto;
+    padding: 20px;
+    text-align: center;
+  }
+
+  mat-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  mat-card-title {
+    color: #f7f3f9;
+    font-weight: bold;
+    padding-bottom: 20px;
+    text-align: justify;
+  }
+
+  mat-card-content {
+    color: #f7f3f9;
+    padding-bottom: 20px;
+    text-align: justify;
+  }

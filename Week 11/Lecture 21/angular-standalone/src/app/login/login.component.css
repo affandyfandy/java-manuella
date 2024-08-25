@@ -1,0 +1,43 @@
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f7f3f9;
+  }
+  
+  .login-card {
+    width: 350px;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  mat-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  mat-card-title {
+    color: #f7f3f9;
+    font-weight: bold;
+    padding-bottom: 20px;
+    text-align: justify;
+  }
+
+  p {
+    color: #f7f3f9;
+  }
+
+  a {
+    color: #2da0ff;
+  }
+
+  .example-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }  

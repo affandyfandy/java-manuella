@@ -1,0 +1,156 @@
+{
+  "products": [
+    {
+      "id": "1",
+      "name": "Apple iPhone 14",
+      "price": 999,
+      "status": "active",
+      "createdTime": "2024-01-10T08:30:00Z",
+      "updatedTime": "2024-02-15T12:00:00Z"
+    },
+    {
+      "id": "2",
+      "name": "Samsung Galaxy S23",
+      "price": 850,
+      "status": "active",
+      "createdTime": "2024-02-01T09:00:00Z",
+      "updatedTime": "2024-02-20T14:00:00Z"
+    },
+    {
+      "id": "3",
+      "name": "Sony WH-1000XM5 Wireless Headphones",
+      "price": 350,
+      "status": "inactive",
+      "createdTime": "2024-03-05T10:15:00Z",
+      "updatedTime": "2024-03-25T16:45:00Z"
+    },
+    {
+      "id": "4",
+      "name": "Apple MacBook Pro 16-inch",
+      "price": 2399,
+      "status": "active",
+      "createdTime": "2024-01-15T11:00:00Z",
+      "updatedTime": "2024-02-22T13:30:00Z"
+    },
+    {
+      "id": "5",
+      "name": "Dell XPS 13",
+      "price": 1200,
+      "status": "active",
+      "createdTime": "2024-02-10T14:20:00Z",
+      "updatedTime": "2024-03-01T09:50:00Z"
+    },
+    {
+      "id": "6",
+      "name": "Microsoft Surface Pro 8",
+      "price": 1100,
+      "status": "inactive",
+      "createdTime": "2024-03-02T10:30:00Z",
+      "updatedTime": "2024-03-20T11:00:00Z"
+    },
+    {
+      "id": "7",
+      "name": "GoPro HERO11 Black",
+      "price": 499,
+      "status": "active",
+      "createdTime": "2024-01-18T12:45:00Z",
+      "updatedTime": "2024-02-25T15:15:00Z"
+    },
+    {
+      "id": "8",
+      "name": "Bose QuietComfort 45",
+      "price": 279,
+      "status": "active",
+      "createdTime": "2024-02-12T14:00:00Z",
+      "updatedTime": "2024-03-05T17:30:00Z"
+    },
+    {
+      "id": "9",
+      "name": "Canon EOS R6 Mirrorless Camera",
+      "price": 2499,
+      "status": "inactive",
+      "createdTime": "2024-01-25T10:00:00Z",
+      "updatedTime": "2024-02-28T14:15:00Z"
+    },
+    {
+      "id": "10",
+      "name": "Dyson V11 Absolute Cordless Vacuum",
+      "price": 599,
+      "status": "active",
+      "createdTime": "2024-01-30T11:30:00Z",
+      "updatedTime": "2024-02-15T18:00:00Z"
+    },
+    {
+      "id": "11",
+      "name": "Fitbit Charge 5",
+      "price": 149,
+      "status": "active",
+      "createdTime": "2024-02-03T08:45:00Z",
+      "updatedTime": "2024-02-18T13:45:00Z"
+    },
+    {
+      "id": "12",
+      "name": "Apple AirPods Pro",
+      "price": 249,
+      "status": "inactive",
+      "createdTime": "2024-01-20T09:20:00Z",
+      "updatedTime": "2024-08-25T08:36:22.629Z"
+    },
+    {
+      "id": "13",
+      "name": "Sony PlayStation 5",
+      "price": 499,
+      "status": "active",
+      "createdTime": "2024-02-15T13:30:00Z",
+      "updatedTime": "2024-03-01T10:00:00Z"
+    },
+    {
+      "id": "14",
+      "name": "Nintendo Switch OLED",
+      "price": 349,
+      "status": "inactive",
+      "createdTime": "2024-02-08T14:40:00Z",
+      "updatedTime": "2024-02-28T15:30:00Z"
+    },
+    {
+      "id": "15",
+      "name": "Logitech MX Master 3 Mouse",
+      "price": 99,
+      "status": "active",
+      "createdTime": "2024-01-12T15:15:00Z",
+      "updatedTime": "2024-03-03T12:30:00Z"
+    },
+    {
+      "id": "16",
+      "name": "Razer BlackWidow V3 Mechanical Keyboard",
+      "price": 139,
+      "status": "inactive",
+      "createdTime": "2024-03-06T16:00:00Z",
+      "updatedTime": "2024-03-18T14:45:00Z"
+    },
+    {
+      "id": "18",
+      "name": "Samsung Galaxy Watch 5",
+      "price": 279,
+      "status": "inactive",
+      "createdTime": "2024-01-19T13:00:00Z",
+      "updatedTime": "2024-02-15T11:30:00Z"
+    },
+    {
+      "id": "19",
+      "name": "Apple iPad Pro 12.9-inch",
+      "price": 1099,
+      "status": "active",
+      "createdTime": "2024-02-18T09:00:00Z",
+      "updatedTime": "2024-03-01T13:30:00Z"
+    },
+    {
+      "id": 20,
+      "name": "Bread",
+      "price": 10,
+      "status": "active",
+      "createdTime": "2024-08-25T10:08:10.957Z",
+      "updatedTime": "2024-08-25T10:08:10.957Z"
+    }
+  ]
+}
