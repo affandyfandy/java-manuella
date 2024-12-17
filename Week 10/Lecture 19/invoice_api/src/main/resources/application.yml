@@ -1,0 +1,23 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: invoice-api
+  datasource:
+    url: jdbc:mysql://localhost:3306/invoicedb
+    username: root
+    password: password
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+product:
+  api:
+    url: http://localhost:8082/api/v1
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
+  instance:
+    preferIpAddress: true
